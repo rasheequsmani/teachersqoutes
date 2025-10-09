@@ -7,10 +7,11 @@
 </head>
 <body>
     <div style="text-align: center; margin-top: 50px;">
-       
+        <!-- Aap yahan ek <h1> tag add kar sakte hain, jaise pehle tha -->
+        <!-- <h1>शिक्षकों के लिए प्रेरणादायक उद्धरण</h1> --> 
         <div style="margin-top: 20px;">
             <p id="quote-text" style="font-size: 1.5em; margin-bottom: 20px;"></p>
-            <button id="new-quote-btn" style="padding: 10px 20px; font-size: 1em;">New Qoutes</button>
+            <button id="new-quote-btn" style="padding: 10px 20px; font-size: 1em;">New Quotes</button>
         </div>
     </div>
 
@@ -22,7 +23,8 @@
             quoteTextElement.textContent = "लोड हो रहा है...";
             try {
                 // *** Yahan aapka naya API URL dalna hai ***
-                const apiURL = 'http://teachersqoutes-7te7.vercel.app/api/quote'; // Apne API ka sahi URL yahan dalein
+                // Note: API URL mein "https://" shuru mein lagana zaroori hai
+                const apiURL = 'https://teachersqoutes-7te7.vercel.app/api/quote'; // Apne API ka sahi URL yahan dalein
                 
                 const response = await fetch(apiURL);
                 
@@ -31,7 +33,9 @@
                 }
 
                 const data = await response.json(); // API JSON format mein data dega
-                quoteTextElement.textContent = `"${data.quote}"`; // 'quote' property ko display karein
+                
+                // Yahan changes kiye gaye hain: `"` hata diye gaye hain
+                quoteTextElement.textContent = data.quote; 
             } catch (error) {
                 console.error("Fetch error:", error);
                 quoteTextElement.textContent = "विचार लोड करने में समस्या हुई। कृपया बाद में पुनः प्रयास करें।";
@@ -39,9 +43,7 @@
         }
 
         newQuoteBtn.addEventListener('click', fetchQuote);
-        fetchQuote();
+        fetchQuote(); // Page load hone par pehla quote load karein
     </script>
 </body>
 </html>
-
-
