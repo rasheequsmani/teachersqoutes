@@ -1,19 +1,45 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Motivational Quotes for Teachers</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>शिक्षकों के लिए प्रेरणादायक उद्धरण</title>
 </head>
 <body>
-  <div class="app">
-   
-    <p id="quote">लोड हो रहा है...</p>
-    <button id="nextBtn">अगला विचार 🔁</button>
+    <div style="text-align: center; margin-top: 50px;">
+        <h1>शिक्षकों के लिए प्रेरणादायक उद्धरण</h1>
+        <div style="margin-top: 20px;">
+            <p id="quote-text" style="font-size: 1.5em; margin-bottom: 20px;"></p>
+            <button id="new-quote-btn" style="padding: 10px 20px; font-size: 1em;">नया उद्धरण</button>
+        </div>
+    </div>
 
-  </div>
+    <script>
+        const quoteTextElement = document.getElementById('quote-text');
+        const newQuoteBtn = document.getElementById('new-quote-btn');
 
-  <script src="script.js"></script>
+        async function fetchQuote() {
+            quoteTextElement.textContent = "लोड हो रहा है...";
+            try {
+                // *** Yahan aapka naya API URL dalna hai ***
+                const apiURL = 'https://teachersqoutes-6dst.vercel.app/api/quote'; // Apne API ka sahi URL yahan dalein
+                
+                const response = await fetch(apiURL);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json(); // API JSON format mein data dega
+                quoteTextElement.textContent = `"${data.quote}"`; // 'quote' property ko display karein
+            } catch (error) {
+                console.error("Fetch error:", error);
+                quoteTextElement.textContent = "विचार लोड करने में समस्या हुई। कृपया बाद में पुनः प्रयास करें।";
+            }
+        }
+
+        newQuoteBtn.addEventListener('click', fetchQuote);
+        fetchQuote();
+    </script>
 </body>
 </html>
