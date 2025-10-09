@@ -7,11 +7,10 @@
 </head>
 <body>
     <div style="text-align: center; margin-top: 50px;">
-        <!-- Aap yahan ek <h1> tag add kar sakte hain, jaise pehle tha -->
-        <!-- <h1>शिक्षकों के लिए प्रेरणादायक उद्धरण</h1> --> 
+        <h1>शिक्षकों के लिए प्रेरणादायक उद्धरण</h1> <!-- Maine yeh heading wapas daal di -->
         <div style="margin-top: 20px;">
             <p id="quote-text" style="font-size: 1.5em; margin-bottom: 20px;"></p>
-            <button id="new-quote-btn" style="padding: 10px 20px; font-size: 1em;">New Quotes</button>
+            <button id="new-quote-btn" style="padding: 10px 20px; font-size: 1em;">नया उद्धरण</button>
         </div>
     </div>
 
@@ -22,20 +21,26 @@
         async function fetchQuote() {
             quoteTextElement.textContent = "लोड हो रहा है...";
             try {
-                // *** Yahan aapka naya API URL dalna hai ***
-                // Note: API URL mein "https://" shuru mein lagana zaroori hai
-                const apiURL = 'https://teachersqoutes-7te7.vercel.app/api/quote'; // Apne API ka sahi URL yahan dalein
+                const apiURL = 'https://teachersqoutes-7te7.vercel.app/api/quote'; 
+                console.log("Fetching from URL:", apiURL); // Step 1: URL log karein
                 
                 const response = await fetch(apiURL);
-                
+                console.log("Raw Response object:", response); // Step 2: Raw Response object log karein
+
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
-                const data = await response.json(); // API JSON format mein data dega
+                // Response ke headers ko bhi log karein
+                console.log("Response Content-Type header:", response.headers.get('Content-Type')); // Step 3: Content-Type header log karein
+
+                const data = await response.json(); // .json() method JSON ko parse karta hai
+                console.log("Parsed JSON data object:", data); // Step 4: Parsed data object log karein
                 
-                // Yahan changes kiye gaye hain: `"` hata diye gaye hain
-                quoteTextElement.textContent = data.quote; 
+                // data.quote mein sirf quote string hona chahiye
+                quoteTextElement.textContent = data.quote; // Yahan koi extra quotes na lagayein
+                console.log("Displayed Quote:", data.quote); // Step 5: Final displayed quote log karein
+
             } catch (error) {
                 console.error("Fetch error:", error);
                 quoteTextElement.textContent = "विचार लोड करने में समस्या हुई। कृपया बाद में पुनः प्रयास करें।";
