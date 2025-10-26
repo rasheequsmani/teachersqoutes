@@ -1,55 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>शिक्षकों के लिए प्रेरणादायक उद्धरण</title>
+    <title>शिक्षकों के लिए प्रेरणादायक विचार</title>
+   
 </head>
 <body>
-    <div style="text-align: center; margin-top: 50px;">
+    <div class="container">
        
-        <div style="margin-top: 20px;">
-            <p id="quote-text" style="font-size: 1.5em; margin-bottom: 20px;"></p>
-            <button id="new-quote-btn" style="padding: 10px 20px; font-size: 1em;">नया उद्धरण</button>
+        <div class="quote-box">
+            <p id="quote-text">लोड हो रहा है...</p>
+            <p id="quote-author"></p>
         </div>
+        <button id="new-quote-btn"></button>
     </div>
-
-    <script>
-        const quoteTextElement = document.getElementById('quote-text');
-        const newQuoteBtn = document.getElementById('new-quote-btn');
-
-        async function fetchQuote() {
-            quoteTextElement.textContent = "लोड हो रहा है...";
-            try {
-                const apiURL = 'https://teachersqoutes-7te7.vercel.app/api/'; 
-                console.log("Fetching from URL:", apiURL); // Step 1: URL log karein
-                
-                const response = await fetch(apiURL);
-                console.log("Raw Response object:", response); // Step 2: Raw Response object log karein
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                // Response ke headers ko bhi log karein
-                console.log("Response Content-Type header:", response.headers.get('Content-Type')); // Step 3: Content-Type header log karein
-
-                const data = await response.json(); // .json() method JSON ko parse karta hai
-                console.log("Parsed JSON data object:", data); // Step 4: Parsed data object log karein
-                
-                // data.quote mein sirf quote string hona chahiye
-                quoteTextElement.textContent = data.quote; // Yahan koi extra quotes na lagayein
-                console.log("Displayed Quote:", data.quote); // Step 5: Final displayed quote log karein
-
-            } catch (error) {
-                console.error("Fetch error:", error);
-                quoteTextElement.textContent = "विचार लोड करने में समस्या हुई। कृपया बाद में पुनः प्रयास करें।";
-            }
-        }
-
-        newQuoteBtn.addEventListener('click', fetchQuote);
-        fetchQuote(); // Page load hone par pehla quote load karein
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
-
