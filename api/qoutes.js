@@ -1,5 +1,5 @@
-module.exports = (req, res) => {
-    const quotes = [
+export default function handler(request, response) {
+     const quotes = [
         "शिक्षण वह पेशा है जो सभी अन्य पेशाओं को सिखाता है।",
         "एक अच्छा शिक्षक आशा जगा सकता है, कल्पना को प्रज्वलित कर सकता है और सीखने का प्रेम जगा सकता है।",
         "सर्वश्रेष्ठ शिक्षक किताब से नहीं, दिल से पढ़ाते हैं।",
@@ -190,6 +190,8 @@ module.exports = (req, res) => {
         "शिक्षक वो है जो हर आत्मा को उड़ान देता है।"
     ];
     const randomIndex = Math.floor(Math.random() * quotes.length);
+
+    
     const randomQuote = quotes[randomIndex];
 
     // CORS headers
@@ -202,4 +204,5 @@ module.exports = (req, res) => {
     }
     
     res.status(200).json({ quote: randomQuote });
+
 };
