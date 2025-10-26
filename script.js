@@ -175,9 +175,7 @@ const hindiQuotes = [
     { text: "अपने सपनों को साकार करो।", author: "अज्ञात" },
     { text: "कभी हार मत मानो।", author: "अज्ञात" },
     { text: "अपने आप पर यकीन रखो।", author: "अज्ञात" },
-    { text: "खुश रहो।", author: "अज्ञात" },
-    { text: "प्यार करो।", author: "अज्ञात" },
-    { text: "हंसो।", author: "अज्ञात" },
+   
     { text: "जिंदगी खूबसूरत है।", author: "अज्ञात" },
     { text: "हमेशा सकारात्मक रहो।", author: "अज्ञात" },
     { text: "अपने दिल की सुनो।", author: "अज्ञात" },
@@ -217,3 +215,4 @@ newQuoteBtn.addEventListener('click', displayNewQuote);
 
 // पेज लोड होने पर पहला विचार लोड करें
 displayNewQuote();
+
