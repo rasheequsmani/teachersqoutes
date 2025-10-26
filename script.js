@@ -5,7 +5,7 @@ const quoteTextElement = document.getElementById('quote-text');
             quoteTextElement.textContent = "लोड हो रहा है...";
             try {
                 
-                const apiURL = 'teachersqoutes-7te7.vercel.app/api/qoute'; // 
+                const apiURL = 'teachersqoutes-7te7.vercel.app/api/'; // 
                 
                 const response = await fetch(apiURL);
                 
@@ -24,4 +24,5 @@ const quoteTextElement = document.getElementById('quote-text');
         newQuoteBtn.addEventListener('click', fetchQuote);
 
         fetchQuote();
+
 
