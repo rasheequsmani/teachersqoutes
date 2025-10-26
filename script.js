@@ -4,8 +4,8 @@ const quoteTextElement = document.getElementById('quote-text');
         async function fetchQuote() {
             quoteTextElement.textContent = "लोड हो रहा है...";
             try {
-                // *** Yahan aapka naya API URL dalna hai ***
-                const apiURL = 'teachersqoutes-7te7.vercel.app/api/qoute'; // Apne API ka sahi URL yahan dalein
+                
+                const apiURL = 'teachersqoutes-7te7.vercel.app/api/qoute'; // 
                 
                 const response = await fetch(apiURL);
                 
@@ -24,3 +24,4 @@ const quoteTextElement = document.getElementById('quote-text');
         newQuoteBtn.addEventListener('click', fetchQuote);
 
         fetchQuote();
+
